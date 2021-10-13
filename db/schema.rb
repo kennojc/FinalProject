@@ -10,10 +10,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_002543) do
+ActiveRecord::Schema.define(version: 2021_10_13_023628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "social_profile"
+    t.string "webpage"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "artists_awards", id: false, force: :cascade do |t|
+    t.bigint "artist_id", null: false
+    t.bigint "award_id", null: false
+    t.index ["artist_id", "award_id"], name: "index_artists_awards_on_artist_id_and_award_id"
+    t.index ["award_id", "artist_id"], name: "index_artists_awards_on_award_id_and_artist_id"
+  end
+
+  create_table "auctions", force: :cascade do |t|
+    t.date "start"
+    t.date "end"
+    t.integer "round", default: 1
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_auctions_on_product_id"
+  end
+
+  create_table "awards", force: :cascade do |t|
+    t.string "badge"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "lowest_price"
+    t.binary "image"
+    t.text "description"
+    t.integer "stock", default: 1
+    t.boolean "certificate"
+    t.bigint "artist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_products_on_artist_id"
+  end
+
+  create_table "products_types", id: false, force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "type_id", null: false
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_products", force: :cascade do |t|
+    t.integer "final_price"
+    t.datetime "adjudication"
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_user_products_on_product_id"
+    t.index ["user_id"], name: "index_user_products_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -31,4 +98,8 @@ ActiveRecord::Schema.define(version: 2021_10_13_002543) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "auctions", "products"
+  add_foreign_key "products", "artists"
+  add_foreign_key "user_products", "products"
+  add_foreign_key "user_products", "users"
 end

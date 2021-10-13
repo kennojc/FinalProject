@@ -1,4 +1,5 @@
 # README
+TRELLO : https://trello.com/b/aJDQ8p9v/proyecto-fullstack-ror
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
