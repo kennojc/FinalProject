@@ -5,9 +5,29 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, placeholder: 'Su nombre', class: 'form-control' %>
+  </div>  
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
+
+  <div class="field">
+    <%= f.label :birthdate %><br />
+    <%= f.text_field :birthdate, placeholder: 'Fecha de Nacimiento', class: 'form-control' %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, placeholder: 'Su dirección', class: 'form-control' %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone, placeholder: 'Su teléfono', class: 'form-control' %>
+  </div> 
 
   <div class="field">
     <%= f.label :password %>
