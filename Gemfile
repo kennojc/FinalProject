@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 # ActiveAdmin for Dashboard
 gem 'activeadmin'
+gem 'activeadmin_addons'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
