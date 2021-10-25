@@ -1,25 +1,12 @@
 # README
 TRELLO : https://trello.com/b/aJDQ8p9v/proyecto-fullstack-ror
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Avances Hito 2:
+- Log In y Registro con Devise OK
+- Permisos de Usuario y Admin son distintos.
+- Panel de control en localhost:3000/admin
+- Dashboard con ActiveAdmin
+- Pendiente: Edición de datos de perfil con AJAX
+- Home diferenciado de usuario/visita : usuario@prueba.com pass: 123456
+- Interacción de servicios aún incompleto.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
