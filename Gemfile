@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 # ActiveAdmin for Dashboard
 gem 'activeadmin'
+gem 'active_admin_flat_skin', github: 'ayann/active_admin_flat_skin'
+gem 'font-awesome-rails'
 gem 'activeadmin_addons'
 
 #Authentication with Facebook
