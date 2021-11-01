@@ -10,8 +10,7 @@
   </head>
 
   <body class="is-preload">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    
 
   <!-- Sidebar -->
 	<%= render 'layouts/sidebar' %>
@@ -36,10 +35,10 @@
 							<a href="#" class="image"><img src="pic01.jpg" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Sed ipsum dolor</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<h2>Ingrese con Facebook</h2>
+									<p>También puede usar su sesión de Facebook para participar en ArteMio. ¡Atrévase!</p>
 									<ul class="actions">
-										<li><a href="generic.html" class="button">Learn more</a></li>
+										<li><%= button_to 'Ingresar con Facebook', user_facebook_omniauth_authorize_path %></li>
 									</ul>
 								</div>
 							</div>
@@ -48,10 +47,10 @@
 							<a href="#" class="image"><img src="pic02.jpg" alt="" data-position="top center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Feugiat consequat</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<h2>Ingrese con Facebook</h2>
+									<p>También puede usar su sesión de FAcebook para participar en ArteMio. ¡Atrévase!</p>
 									<ul class="actions">
-										<li><a href="generic.html" class="button">Learn more</a></li>
+										<li><a href="generic.html" class="button">Ingresar con Facebook</a></li>
 									</ul>
 								</div>
 							</div>
@@ -69,11 +68,6 @@
 							</div>
 						</section>
 					</section>
-
-
-      
-
-    
 
 
     		<!-- Footer -->

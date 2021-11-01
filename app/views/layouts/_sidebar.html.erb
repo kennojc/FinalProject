@@ -1,14 +1,19 @@
 <!-- Sidebar -->
+			
 			<section id="sidebar">
+			
 				<div class="inner">
 					<nav>
                     <% unless user_signed_in? %>
 						<ul>
-							<li><a href="#intro">Inicio</a></li>
+							<li><%= link_to 'Inicio', root_path %></li>
 							<li><%= link_to 'Ingresar', new_user_session_path %></li>
-							<li><%= button_to 'Ingresar con Facebook', user_facebook_omniauth_authorize_path %></li>
-							<li><%= link_to 'Registrase', new_user_registration_path %></li>
+							<li><a href="#one">Ingresar con Facebook</a></li>
+							<li><%= link_to 'Registrese', new_user_registration_path %></li>
 							<li><a href="#three">Contacto</a></li>
+							<li><p class="notice"><%= notice %></p></li>
+							<li><p class="alert"><%= alert %></p></li>
+				</div>
 						</ul>
                     <% else %>
                         <ul>
@@ -16,8 +21,11 @@
                             <li><%= link_to 'Perfil', edit_user_registration_path %></li>
                             <li><%= button_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %></li>
                             <li><a href="#three">Contacto</a></li>
+
                         </ul>
                     <% end %>
 					</nav>
 				</div>
+				
+				
 			</section>
