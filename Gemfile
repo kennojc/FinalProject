@@ -33,7 +33,9 @@ gem 'activeadmin_addons'
 gem 'omniauth-facebook'
 gem "omniauth-rails_csrf_protection"
 
-# Use Active Storage variant
+# Payment by Paypal
+gem 'paypal-checkout-sdk'
+
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb

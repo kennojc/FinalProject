@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   root 'pages#index'
   get '/user' => "auctions#index", :as => :user_root
+  get '/payment' => "user_products#index", :as => :payment_root
+  post :create_order, :to => 'user_products#create_order'
+  post :capture_order, :to => 'user_products#capture_order'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
 end
