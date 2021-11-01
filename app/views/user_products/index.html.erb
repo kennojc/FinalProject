@@ -1,4 +1,46 @@
-<div id="paypal-button-container"></div>
+<!-- Set up a container element for the button -->
+    <div id="paypal-button-container"></div>
+
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=ASUGDgN0Vq5gQB00y1ivnVLYHPnySGTtql26GK6iihRT1cxYym-lbVguuYgP6b3q-nIT3akKItk2ogJs"></script>
+
+    <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: async () => {
+  const response = await fetch('/create_order', {method: 'POST'});
+  const responseData = await response.json();
+  return responseData.token;
+},
+
+            // Finalize the transaction
+            onApprove: async (data) => {
+  const response = await fetch('/capture_order', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({order_id: data.orderID})
+  });
+  const responseData = await response.json();
+  if (responseData.status === 'COMPLETED') {
+    alert('COMPLETED');
+    // REDIRECT TO SUCCESS PAGE
+  }
+}
+
+
+        }).render('#paypal-button-container');
+    </script>
+
+
+
+
+
+
+<%# <div id="paypal-button-container"></div>
 
     <!-- Include the PayPal JavaScript SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
@@ -8,35 +50,31 @@
         paypal.Buttons({
 
             // Set up the transaction
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '88.44'
-                        }
-                    }]
-                });
+            createOrder: async () => {
+            const response = await fetch('/create_order', {method: 'POST'});
+            const responseData = await response.json();
+            return responseData.token;
             },
 
             // Finalize the transaction
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(orderData) {
-                    // Successful capture! For demo purposes:
-                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                    var transaction = orderData.purchase_units[0].payments.captures[0];
-                    alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
-
-                    // Replace the above to show a success message within this page, e.g.
-                    // const element = document.getElementById('paypal-button-container');
-                    // element.innerHTML = '';
-                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-                    // Or go to another URL:  actions.redirect('thank_you.html');
+            onApprove: async (data) => {
+                const response = await fetch('/capture_order', {
+                method: 'POST',
+                headers: {
+                 'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({order_id: data.orderID})
                 });
+                const responseData = await response.json();
+                if (responseData.status === 'COMPLETED') {
+                alert('COMPLETED');
+                // REDIRECT TO SUCCESS PAGE
+                 }
             }
 
 
         }).render('#paypal-button-container');
-    </script>
+    </script> %>
 
 
 
