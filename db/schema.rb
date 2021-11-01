@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 2021_10_25_231644) do
   create_table "products_types", id: false, force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "type_id", null: false
+    t.index ["product_id", "type_id"], name: "index_products_types_on_product_id_and_type_id"
+    t.index ["type_id", "product_id"], name: "index_products_types_on_type_id_and_product_id"
   end
 
   create_table "types", force: :cascade do |t|
@@ -100,6 +102,8 @@ ActiveRecord::Schema.define(version: 2021_10_25_231644) do
   create_table "user_products", force: :cascade do |t|
     t.integer "final_price"
     t.datetime "adjudication"
+    t.boolean "paid", default: false
+    t.string "token"
     t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
